@@ -1,0 +1,113 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define FILE_NAME argv[1]
+#define FILE2 "filtered_numbers.txt"
+#define DIMN 3
+
+int tronco(int x);
+
+int main(int argc, char *argv[]){
+    int c=0;
+    int r=4;
+    char numbers[256];
+    int digit[4];
+    FILE *pfile = fopen(FILE_NAME, "r");
+    FILE *ptr = fopen(FILE2, "w");
+
+      if(pfile == NULL){
+        fprintf(stderr, "Helppppp!! Can't open %s \n", FILE_NAME);
+        exit(EXIT_FAILURE);
+      }
+
+      if(argc<4){
+        fprintf(stderr, "Yeuch: at least 3 args are required\n");
+        exit(EXIT_FAILURE);
+      }
+
+    for (int i=0; i =! EOF; i++){
+        fgets(numbers[i],DIMN+1, pfile);
+        r = numbers[i];
+        r = tronco(r);
+        if(r=!0){
+        c++;
+        fprintf(ptr,"%d\n", r);
+        }
+     }
+     if (c == 0){
+     printf("No right-truncable prime numbers found! You loser \n");
+     } else{
+         printf("It has been found %d right-truncable prime numbers!\n", c);
+     }
+    fclose(pfile);
+    fclose(ptr);
+    return 0;
+}
+
+int tronco(int x ){
+    int flag = 0;
+    int digit[4];
+ if(x>99){
+        for (int n=2; n<=x/2; n++){
+            if(x%n==0){
+                flag = 1;
+                break;
+            }
+        }
+        if(flag==0){
+            digit[0]= x%10;
+            digit[1]= x/10;
+            x=(digit[1]*10) + digit[0];
+                for (int n=2; n<=x/2; n++){
+                    if(x%n==0){
+                        flag = 1;
+                    break;
+        }
+        }if(flag==0){
+            x=digit[0];
+                for (int n=2; n<=x/2; n++){
+                    if(x%n==0){
+                        flag = 1;
+                    break;
+            }
+           }
+          }
+         }
+        }
+ if(x>9 && x<100){
+        for (int n=2; n<=x/2; n++){
+            if(x%n==0){
+                flag = 1;
+                break;
+        }
+        }
+        if(flag==0){
+            x = x/10;
+            for (int n=2; n<=x/2; n++){
+            if(x%n==0){
+                flag = 1;
+                break;
+            }
+           }
+          }
+         }
+
+
+    if(x<9){
+        for (int n=2; n<=x/2; n++){
+            if(x%n==0){
+                flag = 1;
+                break;
+            }
+        }
+    }
+
+    if(flag==1){
+            printf("The number is NOT prime");
+                return 0;
+    }else{
+            printf("The number is prime!!");
+            return x;
+    }
+}
