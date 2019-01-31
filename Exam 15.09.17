@@ -11,7 +11,7 @@ int tronco(int x);
 int main(int argc, char *argv[]){
     int c=0;
     int r=4;
-    char numbers[256];
+    int numbers[256];
     int digit[4];
     FILE *pfile = fopen(FILE_NAME, "r");
     FILE *ptr = fopen(FILE2, "w");
