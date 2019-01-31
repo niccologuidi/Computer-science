@@ -27,7 +27,7 @@ int main(int argc, char *argv[]){
       }
 
     for (int i=0; i =! EOF; i++){
-        fgets(numbers[i],DIMN+1, pfile);
+        fscanf(pfile, "%d", numbers[i]);
         r = numbers[i];
         r = tronco(r);
         if(r=!0){
